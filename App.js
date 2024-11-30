@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React, { useEffect } from 'react';
+import { StatusBar } from 'react-native';
+import AppNavigator from './app/screens/navigation/AppNavigator';
+import { initDatabase } from './app/utils/database';
+import { COLORS } from './app/theme/colors';
 
 export default function App() {
+  useEffect(() => {
+    // Initialize database when app starts
+    initDatabase();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar 
+        barStyle="light-content" 
+        backgroundColor={COLORS.BACKGROUND_DARK} 
+      />
+      <AppNavigator />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
