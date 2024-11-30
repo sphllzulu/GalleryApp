@@ -1,13 +1,13 @@
-// app/navigation/AppNavigator.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { COLORS } from '../../theme/colors';
+import { COLORS } from '../theme/colors';
 
-import AuthScreen from '../AuthScreen';
-import GalleryScreen from '../GalleryScreen';
-import CameraScreen from '../CameraScreen';
-import ImageDetailScreen from '../ImageDetailScreen';
+import AuthScreen from '../screens/AuthScreen';
+import GalleryScreen from '../screens/GalleryScreen';
+import CameraScreen from '../screens/CameraScreen';
+import ImageDetailScreen from '../screens/ImageDetailScreen';
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const Stack = createStackNavigator();
 
@@ -32,19 +32,34 @@ export default function AppNavigator() {
         />
         <Stack.Screen 
           name="Gallery" 
-          component={GalleryScreen} 
           options={{ title: 'My Gallery' }}
-        />
+        >
+          {(props) => (
+            <ProtectedRoute {...props}>
+              <GalleryScreen {...props} />
+            </ProtectedRoute>
+          )}
+        </Stack.Screen>
         <Stack.Screen 
           name="Camera" 
-          component={CameraScreen} 
           options={{ title: 'Take Photo' }}
-        />
+        >
+          {(props) => (
+            <ProtectedRoute {...props}>
+              <CameraScreen {...props} />
+            </ProtectedRoute>
+          )}
+        </Stack.Screen>
         <Stack.Screen 
           name="ImageDetail" 
-          component={ImageDetailScreen} 
           options={{ title: 'Image Details' }}
-        />
+        >
+          {(props) => (
+            <ProtectedRoute {...props}>
+              <ImageDetailScreen {...props} />
+            </ProtectedRoute>
+          )}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

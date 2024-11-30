@@ -1,7 +1,7 @@
 // App.js
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import AppNavigator from './app/screens/navigation/AppNavigator';
+import AppNavigator from './app/navigation/AppNavigator';
 import { initDatabase } from './app/utils/database';
 import { COLORS } from './app/theme/colors';
 
