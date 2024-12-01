@@ -18,6 +18,7 @@ import {
   getCurrentLocation 
 } from '../utils/permissions';
 import { saveImage } from '../utils/database';
+import { reverseGeocodeAsync } from 'expo-location';
 
 export default function CameraScreen({ navigation }) {
   // Use the new useCameraPermissions hook
@@ -69,7 +70,7 @@ export default function CameraScreen({ navigation }) {
   const selectFromGallery = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaType.Images,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         quality: 1,
       });
