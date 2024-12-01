@@ -29,7 +29,8 @@
     "react-native-screens": "~4.1.0",
     "react-native-svg": "^15.9.0",
     "react-native-vision-camera": "^4.6.3",
-    "react-native-web": "~0.19.13"
+    "react-native-web": "~0.19.13",
+    "@expo/vector-icons": "^14.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
