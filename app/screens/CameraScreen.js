@@ -1,137 +1,4 @@
-// import React, { useState, useEffect } from 'react';
-// import { 
-//   View, 
-//   TouchableOpacity, 
-//   StyleSheet, 
-//   Alert 
-// } from 'react-native';
-// import * as ImagePicker from 'expo-image-picker';
-// import * as SecureStore from 'expo-secure-store';
-// // import { Camera } from 'expo-camera';
-// import * as ExpoCamera from 'expo-camera';
-// import { COLORS } from '../theme/colors';
-// import { 
-//   requestCameraPermissions, 
-//   requestLocationPermissions, 
-//   getCurrentLocation 
-// } from '../utils/permissions';
-// import { saveImage } from '../utils/database';
 
-// export default function CameraScreen({ navigation }) {
-//   const [hasPermission, setHasPermission] = useState(null);
-
-//   const [type, setType] = useState(ExpoCamera.Camera.Constants.Type.back);
-// //   const [type, setType] = useState(Camera.Constants.Type.back);
-//   const cameraRef = React.useRef(null);
-
-//   useEffect(() => {
-//     (async () => {
-//       const cameraPermission = await requestCameraPermissions();
-//       const locationPermission = await requestLocationPermissions();
-      
-//       setHasPermission(cameraPermission && locationPermission);
-//     })();
-//   }, []);
-
-//   const takePicture = async () => {
-//     if (cameraRef.current) {
-//       const photo = await cameraRef.current.takePictureAsync();
-//       await processImage(photo.uri);
-//     }
-//   };
-
-//   const selectFromGallery = async () => {
-//     const result = await ImagePicker.launchImageLibraryAsync({
-//       mediaTypes: ImagePicker.MediaType.Images,
-//       allowsEditing: true,
-//       quality: 1,
-//     });
-
-//     if (!result.canceled) {
-//       await processImage(result.assets[0].uri);
-//     }
-//   };
-
-//   const processImage = async (uri) => {
-//     try {
-//       const userId = await SecureStore.getItemAsync('user_id');
-//       const location = await getCurrentLocation();
-
-//       if (location) {
-//         await saveImage(
-//           userId, 
-//           uri, 
-//           location.latitude, 
-//           location.longitude
-//         );
-//         navigation.goBack();
-//       } else {
-//         Alert.alert('Location Error', 'Could not retrieve location');
-//       }
-//     } catch (error) {
-//       Alert.alert('Error', 'Failed to save image');
-//     }
-//   };
-
-//   if (hasPermission === null) return <View />;
-//   if (hasPermission === false) {
-//     return <Text>No access to camera</Text>;
-//   }
-
-//   return (
-//     <View style={styles.container}>
-//       <Camera 
-//         style={styles.camera} 
-//         type={type} 
-//         ref={cameraRef}
-//       >
-//         <View style={styles.buttonContainer}>
-//           <TouchableOpacity
-//             style={styles.cameraButton}
-//             onPress={takePicture}
-//           />
-//           <TouchableOpacity
-//             style={styles.galleryButton}
-//             onPress={selectFromGallery}
-//           />
-//         </View>
-//       </Camera>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: COLORS.BACKGROUND_DARK
-//   },
-//   camera: {
-//     flex: 1,
-//     justifyContent: 'flex-end',
-//     alignItems: 'center'
-//   },
-//   buttonContainer: {
-//     flexDirection: 'row',
-//     marginBottom: 20,
-//     backgroundColor: 'transparent'
-//   },
-//   cameraButton: {
-//     width: 70,
-//     height: 70,
-//     bottom: 0,
-//     borderRadius: 50,
-//     backgroundColor: COLORS.PRIMARY_BLUE,
-//     marginHorizontal: 20
-//   },
-//   galleryButton: {
-//     width: 70,
-//     height: 70,
-//     bottom: 0,
-//     borderRadius: 50,
-//     backgroundColor: COLORS.SECONDARY_BLUE,
-//     marginHorizontal: 20
-//   }
-// });
 
 import React, { useState } from 'react';
 import { 
@@ -147,6 +14,7 @@ import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { COLORS } from '../theme/colors';
 import { 
   requestLocationPermissions, 
+  getLocationName,
   getCurrentLocation 
 } from '../utils/permissions';
 import { saveImage } from '../utils/database';
@@ -201,7 +69,7 @@ export default function CameraScreen({ navigation }) {
   const selectFromGallery = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        mediaTypes: ImagePicker.MediaType.Images,
         allowsEditing: true,
         quality: 1,
       });

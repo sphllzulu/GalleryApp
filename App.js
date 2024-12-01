@@ -1,4 +1,3 @@
-// App.js
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import AppNavigator from './app/navigation/AppNavigator';

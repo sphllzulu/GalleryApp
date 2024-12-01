@@ -129,6 +129,7 @@ import {
   TextInput 
 } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+
 import { COLORS } from '../theme/colors';
 import { getUserImages } from '../utils/database';
 import { Ionicons } from '@expo/vector-icons';
@@ -174,6 +175,9 @@ export default function GalleryScreen({ navigation }) {
     }
   }, [searchQuery, images]);
 
+
+
+  
   // Render individual image grid item
   const renderImageGridItem = ({ item }) => (
     <TouchableOpacity 
@@ -185,7 +189,7 @@ export default function GalleryScreen({ navigation }) {
         style={styles.image} 
         resizeMode="cover"
       />
-      {/* Optional: Show location name on image */}
+      {/*  Show location name on image */}
       {item.location && (
         <View style={styles.locationOverlay}>
           <Text style={styles.locationText} numberOfLines={1}>

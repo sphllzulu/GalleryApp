@@ -3,6 +3,7 @@ export const COLORS = {
     PRIMARY_BLUE: '#1E88E5',
     SECONDARY_BLUE: '#6AB7FF',
     ACCENT_BLUE: '#0D47A1',
+    ACCENT_RED:'red',
     TEXT_WHITE: '#FFFFFF',
     TEXT_LIGHT_BLUE: '#B0BEC5'
   };
