@@ -1,4 +1,4 @@
-// app/components/ProtectedRoute.js
+
 import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import * as SecureStore from 'expo-secure-store';

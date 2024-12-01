@@ -137,7 +137,7 @@ export default function AuthScreen({ navigation }) {
     }
 
     try {
-      // Simple authentication (replace with actual Firebase/Backend logic)
+      
       const userId = email.replace(/[^a-zA-Z0-9]/g, '');
       await SecureStore.setItemAsync('user_id', userId);
       navigation.replace('Gallery');
@@ -148,7 +148,7 @@ export default function AuthScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Add a logo image at the top of the screen */}
+      
       <Image 
         source={require('../../assets/logo.jpg')}
         style={styles.logo}
