@@ -70,7 +70,7 @@ export default function LocationMap({
   const initialRegion = {
     latitude,
     longitude,
-    latitudeDelta: 0.01,  // Zoom level
+    latitudeDelta: 0.01,  
     longitudeDelta: 0.01
   };
 
@@ -86,7 +86,7 @@ export default function LocationMap({
           title="Current Location"
           description={`Lat: ${latitude}, Lon: ${longitude}`}
         >
-          {/* Optional: Custom marker icon */}
+          
           <View style={styles.markerContainer}>
             <View style={styles.markerDot} />
           </View>
