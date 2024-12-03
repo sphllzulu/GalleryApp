@@ -118,10 +118,10 @@ yarn test
 
 - Location services might be slow on some devices
 - Performance optimization needed for large image collections
-- Search functionality might not work 
+
 
 ## 📞 Contact
 
 Siphelele Zulu - sphllzulu@gmail.com
 
-Project Link: [https://github.com/yourusername/gallery-app]
+Download APK: To be deployed
