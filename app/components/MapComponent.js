@@ -21,7 +21,7 @@ export default function PlaceholderMap({ latitude, longitude }) {
         setError(null);
 
         try {
-          // Attempt to reverse geocode the coordinates
+          // Attempting to reverse geocode the coordinates
           const [location] = await Location.reverseGeocodeAsync({ latitude, longitude });
 
           if (location) {
