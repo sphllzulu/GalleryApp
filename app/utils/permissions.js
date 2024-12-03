@@ -15,12 +15,22 @@ export const requestLocationPermissions = async () => {
 };
 
 
+
+
 export const getCurrentLocation = async () => {
   try {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      console.warn('Location permissions not granted');
+      return null;
+    }
+
     const location = await Location.getCurrentPositionAsync({});
+    console.log('Current location:', location);
+
     return {
       latitude: location.coords.latitude,
-      longitude: location.coords.longitude
+      longitude: location.coords.longitude,
     };
   } catch (error) {
     console.error('Location error:', error);
@@ -30,21 +40,30 @@ export const getCurrentLocation = async () => {
 
 
 
-// export const getLocationName = async (latitude, longitude) => {
-//   try {
-//     const [locationInfo] = await Location.reverseGeocodeAsync({
-//       latitude,
-//       longitude
-//     });
+//getting human readable location
 
-//     // Construct a readable location string
-//     const locationName = locationInfo 
-//       ? `${locationInfo.city}, ${locationInfo.country}` 
-//       : 'Unknown Location';
 
-//     return locationName;
-//   } catch (error) {
-//     console.error('Error getting location name:', error);
-//     return 'Unknown Location';
-//   }
-// };
+export const getLocationName = async (latitude, longitude) => {
+  try {
+    // Validate latitude and longitude
+    if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+      throw new Error(`Invalid latitude or longitude: ${latitude}, ${longitude}`);
+    }
+
+    // Call reverse geocoding
+    const [place] = await Location.reverseGeocodeAsync({ latitude, longitude });
+
+    if (!place) {
+      console.warn('No location found for coordinates:', latitude, longitude);
+      return 'Unknown Location';
+    }
+
+    // Return location name based on availability
+    return place.city || place.region || place.country || 'Unknown Location';
+  } catch (error) {
+    console.error('Reverse geocoding error:', error);
+    return 'Unknown Location';
+  }
+};
+
+
