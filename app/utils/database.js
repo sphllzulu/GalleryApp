@@ -57,6 +57,7 @@
 
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system';
+import { getLocationName } from './permissions';
 
 // Open or create the database asynchronously
 const db = SQLite.openDatabaseAsync('gallery.db');
@@ -84,13 +85,27 @@ export const initDatabase = async () => {
 };
 
 // Save an image to the database
+// export const saveImage = async (userId, uri, latitude, longitude) => {
+//   try {
+//     const result = await (await db).runAsync(
+//       'INSERT INTO images (user_id, uri, latitude, longitude) VALUES (?, ?, ?, ?)',
+//       [userId, uri, latitude, longitude]
+//     );
+//     console.log('✅ Image saved:', result);
+//     return result;
+//   } catch (error) {
+//     console.error('❌ Error saving image:', error);
+//     throw error;
+//   }
+// };
 export const saveImage = async (userId, uri, latitude, longitude) => {
   try {
+    const locationName = await getLocationName(latitude, longitude);
     const result = await (await db).runAsync(
-      'INSERT INTO images (user_id, uri, latitude, longitude) VALUES (?, ?, ?, ?)',
-      [userId, uri, latitude, longitude]
+      'INSERT INTO images (user_id, uri, latitude, longitude, location) VALUES (?, ?, ?, ?, ?)',
+      [userId, uri, latitude, longitude, locationName]
     );
-    console.log('✅ Image saved:', result);
+    console.log('✅ Image saved with location:', result);
     return result;
   } catch (error) {
     console.error('❌ Error saving image:', error);
@@ -147,6 +162,20 @@ export const deleteImage = async (imageId) => {
     return true;
   } catch (error) {
     console.error('❌ Error deleting image:', error);
+    throw error;
+  }
+};
+
+export const searchImagesByLocation = async (userId, searchQuery) => {
+  try {
+    const result = await (await db).getAllAsync(
+      'SELECT * FROM images WHERE user_id = ? AND location LIKE ? ORDER BY timestamp DESC',
+      [userId, `%${searchQuery}%`]
+    );
+    console.log('✅ Images retrieved for search:', result);
+    return result;
+  } catch (error) {
+    console.error('❌ Error searching images:', error);
     throw error;
   }
 };
