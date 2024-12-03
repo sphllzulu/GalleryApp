@@ -150,12 +150,17 @@ const styles = StyleSheet.create({
           },
           gridItem: {
             flex: 1,
-            margin: 2,
+            margin: 5,
             aspectRatio: 1,
+            
+       
           },
           image: {
             width: '100%',
             height: '100%',
+            borderWidth: 3,
+            borderColor: COLORS.PRIMARY_BLUE,
+            borderRadius:10,
           },
           emptyContainer: {
             flex: 1,

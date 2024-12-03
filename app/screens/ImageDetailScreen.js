@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     height: 200,
     borderRadius: 10,
-    marginBottom: 15,
+    marginTop: 15,
   },
   timestampText: {
     color: COLORS.TEXT_LIGHT_BLUE,
