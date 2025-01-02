@@ -1,58 +1,4 @@
-// import * as SQLite from 'expo-sqlite';
 
-// // Open or create the database asynchronously
-// const db = SQLite.openDatabaseAsync('gallery.db');
-
-// // Initialize the database
-// export const initDatabase = async () => {
-//   try {
-//     // Use runAsync instead of transaction
-//     await (await db).runAsync(
-//       `CREATE TABLE IF NOT EXISTS images (
-//         id INTEGER PRIMARY KEY AUTOINCREMENT, 
-//         user_id TEXT, 
-//         uri TEXT, 
-//         latitude REAL, 
-//         longitude REAL, 
-//         timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-//       )`
-//     );
-//     console.log('✅ Database initialized');
-//   } catch (error) {
-//     console.error('❌ Error initializing database:', error);
-//     throw error;
-//   }
-// };
-
-// // Save an image to the database
-// export const saveImage = async (userId, uri, latitude, longitude) => {
-//   try {
-//     const result = await (await db).runAsync(
-//       'INSERT INTO images (user_id, uri, latitude, longitude) VALUES (?, ?, ?, ?)',
-//       [userId, uri, latitude, longitude]
-//     );
-//     console.log('✅ Image saved:', result);
-//     return result;
-//   } catch (error) {
-//     console.error('❌ Error saving image:', error);
-//     throw error;
-//   }
-// };
-
-// // Retrieve images for a specific user
-// export const getUserImages = async (userId) => {
-//   try {
-//     const result = await (await db).getAllAsync(
-//       'SELECT * FROM images WHERE user_id = ? ORDER BY timestamp DESC',
-//       [userId]
-//     );
-//     console.log('✅ Images retrieved:', result);
-//     return result;
-//   } catch (error) {
-//     console.error('❌ Error retrieving images:', error);
-//     throw error;
-//   }
-// };
 
 
 import * as SQLite from 'expo-sqlite';
@@ -85,19 +31,7 @@ export const initDatabase = async () => {
 };
 
 // Save an image to the database
-// export const saveImage = async (userId, uri, latitude, longitude) => {
-//   try {
-//     const result = await (await db).runAsync(
-//       'INSERT INTO images (user_id, uri, latitude, longitude) VALUES (?, ?, ?, ?)',
-//       [userId, uri, latitude, longitude]
-//     );
-//     console.log('✅ Image saved:', result);
-//     return result;
-//   } catch (error) {
-//     console.error('❌ Error saving image:', error);
-//     throw error;
-//   }
-// };
+
 export const saveImage = async (userId, uri, latitude, longitude) => {
   try {
     const locationName = await getLocationName(latitude, longitude);

@@ -30,8 +30,11 @@ export default function GalleryScreen({ navigation }) {
       try {
         const userId = await SecureStore.getItemAsync('user_id');
         const userImages = await getUserImages(userId);
+        
         setImages(userImages);
         setFilteredImages(userImages); 
+        
+        
       } catch (error) {
         console.error('Failed to load images', error);
       }
