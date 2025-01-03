@@ -124,4 +124,6 @@ yarn test
 
 Siphelele Zulu - sphllzulu@gmail.com
 
-Download APK: To be deployed
+## Documentation: 
+User guide: https://docs.google.com/document/d/1cxotHuVDRJs4_4g7Bs1Ynmdc1U8E797typwTb8sYWi0/edit?usp=sharing
+Dev Docs: https://docs.google.com/document/d/1yf09xOT02lfQxFLbgsL0abuihBE98WiiPpsl_jVnNWQ/edit?usp=sharing
